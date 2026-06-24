@@ -9,3 +9,10 @@ paginate = 5
 
 [params]
   custom_css = ["css/custom.css"]
+
+[menu]
+  [[menu.main]]
+    identifier = "stock-monitor"
+    name = "股票监控"
+    url = "/stock-monitor/"
+    weight = 5

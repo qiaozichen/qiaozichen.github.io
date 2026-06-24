@@ -1,0 +1,46 @@
+{{/*
+Shortcode: stock-widget
+Usage: {{< stock-widget symbols="600336,000777" >}}
+It renders a simple table that fetches real‑time prices for the given symbols from a public API.
+Replace the placeholder URL with a real stock‑price API if needed.
+*/}}
+<div class="stock-widget" data-symbols="{{ .Get \"symbols\" }}">
+  <table class="stock-table" style="width:100%; border-collapse:collapse;">
+    <thead>
+      <tr>
+        <th style="border:1px solid #ddd;padding:8px;">代码</th>
+        <th style="border:1px solid #ddd;padding:8px;">名称</th>
+        <th style="border:1px solid #ddd;padding:8px;">最新价</th>
+        <th style="border:1px solid #ddd;padding:8px;">涨跌幅</th>
+      </tr>
+    </thead>
+    <tbody id="stock-table-body">
+      <tr><td colspan="4" style="text-align:center;padding:8px;">加载中…</td></tr>
+    </tbody>
+  </table>
+</div>
+<script>
+(function(){
+  const container = document.currentScript.parentElement;
+  const symbols = container.dataset.symbols.split(',').map(s=>s.trim());
+  const tbody = container.querySelector('#stock-table-body');
+  // Placeholder API – replace with real endpoint that returns JSON array [{symbol, name, price, change}]
+  const apiUrl = 'https://api.example.com/stock?symbols=' + symbols.join(',');
+  fetch(apiUrl)
+    .then(r=>r.json())
+    .then(data=>{
+      tbody.innerHTML = '';
+      data.forEach(item=>{
+        const row = document.createElement('tr');
+        row.innerHTML = `<td style="border:1px solid #ddd;padding:8px;">${item.symbol}</td>`+
+                        `<td style="border:1px solid #ddd;padding:8px;">${item.name}</td>`+
+                        `<td style="border:1px solid #ddd;padding:8px;">${item.price}</td>`+
+                        `<td style="border:1px solid #ddd;padding:8px;">${item.change}</td>`;
+        tbody.appendChild(row);
+      });
+    })
+    .catch(err=>{
+      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;padding:8px;color:red;">加载失败，请检查 API URL</td></tr>`;
+    });
+})();
+</script>

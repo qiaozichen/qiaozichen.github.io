@@ -38,19 +38,9 @@ type: "home"
 <section id="posts" class="container my-5">
 <h2>最新博客 <img src="/img/icons/wu-xing.svg" class="icon" alt="五行"></h2>
 
-{{ range first 5 (where .Site.RegularPages "Section" "posts") }}
-<div class="col-md-4 mb-4">
-  <div class="card h-100">
-    <div class="card-body">
-      <h5 class="card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h5>
-      <p class="card-text text-muted">{{ .Summary | plainify | truncate 80 }}</p>
-    </div>
-    <div class="card-footer bg-white">
-      <small class="text-muted">{{ .Date.Format "2006-01-02" }}</small>
-    </div>
-  </div>
-</div>
-{{ end }}
+<ul>
+  <li><a href="/posts/first-post/">第一篇博客 — 2026-06-25</a></li>
+</ul>
 
 <p class="text-center mt-4"><a class="btn btn-outline-primary" href="/posts/">查看全部博客 »</a></p>
 </section>

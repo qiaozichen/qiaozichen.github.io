@@ -1,0 +1,8 @@
+baseURL = "https://YOUR_GITHUB_USERNAME.github.io/"
+languageCode = "zh-CN"
+title = "我的个人站点"
+theme = "ananke"
+
+# 下面的设置可以根据需要自行调整
+enableRobotsTXT = true
+paginate = 5

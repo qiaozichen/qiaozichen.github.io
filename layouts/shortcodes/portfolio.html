@@ -1,0 +1,18 @@
+{{/* Shortcode: {{< portfolio >}} – 渲染最近 3 项作品卡片 */}}
+{{ $projects := (where .Site.RegularPages "Section" "portfolio") | first 3 }}
+{{ range $projects }}
+<div class="col-md-4 mb-4">
+  <div class="card h-100">
+    {{ with .Params.thumbnail }}
+      <img src="{{ . | relURL }}" class="card-img-top" alt="{{ $.Title }}">
+    {{ end }}
+    <div class="card-body">
+      <h5 class="card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h5>
+      <p class="card-text text-muted">{{ .Summary | plainify | truncate 60 }}</p>
+    </div>
+    <div class="card-footer bg-white">
+      <small class="text-muted">{{ .Date.Format "2006-01-02" }}</small>
+    </div>
+  </div>
+</div>
+{{ end }}

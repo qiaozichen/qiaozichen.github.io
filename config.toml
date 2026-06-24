@@ -6,3 +6,6 @@ theme = "ananke"
 # 下面的设置可以根据需要自行调整
 enableRobotsTXT = true
 paginate = 5
+
+[params]
+  customCSS = ["css/custom.css"]
